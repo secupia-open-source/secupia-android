@@ -6,4 +6,6 @@
 
     <color name="blk01">#FF000000</color>
     <color name="blu01">#FF03BFD1</color>
+    <color name="red01">#FFF15151</color>
+    <color name="wht01">#FFFEFEFE</color>
 </resources>
