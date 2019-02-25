@@ -7,6 +7,8 @@ import androidx.room.Room
 import com.anenigmatic.secupia.screens.shared.data.UserRepository
 import com.anenigmatic.secupia.screens.shared.data.UserRepositoryImpl
 import com.anenigmatic.secupia.screens.shared.data.room.AppDatabase
+import com.anenigmatic.secupia.screens.vehicle.data.VehicleRepository
+import com.anenigmatic.secupia.screens.vehicle.data.VehicleRepositoryImpl
 import com.anenigmatic.secupia.screens.vehicle.data.room.VehiclesDao
 import dagger.Module
 import dagger.Provides
@@ -14,6 +16,12 @@ import javax.inject.Singleton
 
 @Module
 class AppModule(private val application: Application) {
+
+    @Singleton
+    @Provides
+    fun providesVehicleRepository(vehiclesDao: VehiclesDao): VehicleRepository {
+        return VehicleRepositoryImpl(vehiclesDao)
+    }
 
     @Singleton
     @Provides
