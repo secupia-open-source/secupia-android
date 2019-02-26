@@ -12,4 +12,6 @@
     <color name="grn01">#FF7AC7A7</color>
     <color name="red01">#FFF15151</color>
     <color name="wht01">#FFFEFEFE</color>
+
+    <color name="clear">#00FFFFFF</color>
 </resources>
