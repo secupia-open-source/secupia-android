@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.anenigmatic.secupia.R
 import com.anenigmatic.secupia.screens.login.core.LoginViewModel
 import com.anenigmatic.secupia.screens.login.core.LoginViewModelFactory
-import com.anenigmatic.secupia.screens.login.core.UiOrder
+import com.anenigmatic.secupia.screens.login.core.LoginViewModel.UiOrder
 import kotlinx.android.synthetic.main.fra_login.view.*
 
 class LoginFragment : Fragment() {

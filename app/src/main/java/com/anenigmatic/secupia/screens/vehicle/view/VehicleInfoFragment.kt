@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.anenigmatic.secupia.R
-import com.anenigmatic.secupia.screens.vehicle.core.UiOrder
+import com.anenigmatic.secupia.screens.vehicle.core.VehicleInfoViewModel.UiOrder
 import com.anenigmatic.secupia.screens.vehicle.core.Vehicle
 import com.anenigmatic.secupia.screens.vehicle.core.VehicleInfoViewModel
 import com.anenigmatic.secupia.screens.vehicle.core.VehicleInfoViewModelFactory

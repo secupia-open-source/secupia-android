@@ -11,6 +11,16 @@ import io.reactivex.schedulers.Schedulers
 
 class LoginViewModel(private val uRepo: UserRepository) : ViewModel() {
 
+    sealed class UiOrder {
+
+        object ShowLoadingState : UiOrder()
+
+        object ShowWorkingState : UiOrder()
+
+        object MoveToTheMainApp : UiOrder()
+    }
+
+
     val order: LiveData<UiOrder> = MutableLiveData()
     val toast: LiveData<String?> = SingleLiveEvent()
 

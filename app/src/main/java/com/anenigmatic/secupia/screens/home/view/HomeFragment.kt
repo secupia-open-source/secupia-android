@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.anenigmatic.secupia.R
 import com.anenigmatic.secupia.screens.home.core.HomeViewModel
 import com.anenigmatic.secupia.screens.home.core.HomeViewModelFactory
-import com.anenigmatic.secupia.screens.home.core.UiOrder
+import com.anenigmatic.secupia.screens.home.core.HomeViewModel.UiOrder
 import com.anenigmatic.secupia.screens.login.view.LoginFragment
 import com.anenigmatic.secupia.screens.vehicle.view.VehicleInfoFragment
 import kotlinx.android.synthetic.main.fra_home.view.*

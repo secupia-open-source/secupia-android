@@ -13,6 +13,14 @@ import io.reactivex.schedulers.Schedulers
 
 class VehicleInfoViewModel(private val vRepo: VehicleRepository) : ViewModel() {
 
+    sealed class UiOrder {
+
+        object ShowLoadingState : UiOrder()
+
+        data class ShowWorkingState(val vehicles: List<Vehicle>) : UiOrder()
+    }
+
+
     val orderData: LiveData<UiOrder> = MutableLiveData()
     val toastData: LiveData<String?> = SingleLiveEvent()
 
