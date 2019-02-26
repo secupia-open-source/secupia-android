@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootPOV"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/appBarPOV"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="@color/blu02"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:tint="@color/wht01"
+        app:layout_constraintBottom_toBottomOf="@+id/appBarPOV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/appBarPOV"
+        app:srcCompat="@drawable/ic_back" />
+
+    <TextView
+        android:id="@+id/screenTitleLBL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:textColor="@color/wht01"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/backBTN"
+        app:layout_constraintStart_toEndOf="@+id/backBTN"
+        app:layout_constraintTop_toTopOf="@+id/backBTN"
+        tools:text="Maruti Suzuki Swift" />
+
+    <ImageView
+        android:id="@+id/refreshBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:tint="@color/wht01"
+        app:layout_constraintBottom_toBottomOf="@+id/backBTN"
+        app:layout_constraintEnd_toEndOf="@+id/appBarPOV"
+        app:layout_constraintTop_toTopOf="@+id/backBTN"
+        app:srcCompat="@drawable/ic_refresh" />
+
+    <TextView
+        android:id="@+id/registrationNoLBL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/cabin_medium"
+        android:textColor="@color/blu02"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarPOV"
+        tools:text="MH 01 AE 8017" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Show for:"
+        android:textColor="@color/blu02"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/registrationNoLBL"
+        app:layout_constraintTop_toBottomOf="@+id/registrationNoLBL" />
+
+    <TextView
+        android:id="@+id/filter03DaysBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/sl_radio_button"
+        android:backgroundTint="@color/blu01"
+        android:paddingStart="12dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="4dp"
+        android:text="3 days"
+        android:textColor="@color/blu01"
+        app:layout_constraintBottom_toBottomOf="@+id/textView7"
+        app:layout_constraintEnd_toStartOf="@+id/filter07DaysBTN"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/filter07DaysBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sl_radio_button"
+        android:backgroundTint="@color/blu01"
+        android:paddingStart="12dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="4dp"
+        android:text="7 days"
+        android:textColor="@color/blu01"
+        app:layout_constraintBottom_toBottomOf="@+id/filter03DaysBTN"
+        app:layout_constraintEnd_toStartOf="@+id/filter15DaysBTN"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter03DaysBTN"
+        app:layout_constraintTop_toTopOf="@+id/filter03DaysBTN" />
+
+    <TextView
+        android:id="@+id/filter15DaysBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/sl_radio_button"
+        android:backgroundTint="@color/blu01"
+        android:paddingStart="12dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="4dp"
+        android:text="15 days"
+        android:textColor="@color/blu01"
+        app:layout_constraintBottom_toBottomOf="@+id/filter07DaysBTN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/filter07DaysBTN"
+        app:layout_constraintTop_toTopOf="@+id/filter07DaysBTN" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/vehicleLogsRCY"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/filter03DaysBTN"
+        tools:listitem="@layout/row_vehicle_log" />
+
+    <ProgressBar
+        android:id="@+id/loaderPBR"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/blu02"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarPOV" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
