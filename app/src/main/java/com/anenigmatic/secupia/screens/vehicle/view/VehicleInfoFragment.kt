@@ -27,6 +27,10 @@ class VehicleInfoFragment : Fragment(), VehiclesAdapter.ClickListener {
 
         rootPOV.vehiclesRCY.adapter = VehiclesAdapter(this)
 
+        rootPOV.backBTN.setOnClickListener {
+            activity!!.supportFragmentManager.popBackStack()
+        }
+
         rootPOV.refreshBTN.setOnClickListener {
             viewModel.refreshData()
         }

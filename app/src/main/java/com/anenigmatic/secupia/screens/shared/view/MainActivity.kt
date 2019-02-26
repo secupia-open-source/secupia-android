@@ -3,7 +3,7 @@ package com.anenigmatic.secupia.screens.shared.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.anenigmatic.secupia.R
-import com.anenigmatic.secupia.screens.login.view.LoginFragment
+import com.anenigmatic.secupia.screens.home.view.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         if(savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .add(R.id.rootPOV, LoginFragment())
+                .add(R.id.rootPOV, HomeFragment())
                 .commit()
 
         }

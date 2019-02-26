@@ -37,7 +37,7 @@ class LoginFragment : Fragment() {
                 is UiOrder.ShowLoadingState -> showLoadingState()
                 is UiOrder.ShowWorkingState -> showWorkingState()
                 is UiOrder.MoveToTheMainApp -> {
-
+                    activity!!.supportFragmentManager.popBackStack()
                 }
             }
         })
