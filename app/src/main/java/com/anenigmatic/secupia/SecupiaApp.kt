@@ -4,6 +4,7 @@ import android.app.Application
 import com.anenigmatic.secupia.di.shared.AppComponent
 import com.anenigmatic.secupia.di.shared.AppModule
 import com.anenigmatic.secupia.di.shared.DaggerAppComponent
+import com.jakewharton.threetenabp.AndroidThreeTen
 
 class SecupiaApp : Application() {
 
@@ -18,5 +19,7 @@ class SecupiaApp : Application() {
         appComponent = DaggerAppComponent.builder()
             .appModule(AppModule(this))
             .build()
+
+        AndroidThreeTen.init(this)
     }
 }

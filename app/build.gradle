@@ -45,6 +45,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.1.2'
+
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
