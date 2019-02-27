@@ -3,12 +3,15 @@ package com.anenigmatic.secupia.screens.shared.data
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.anenigmatic.secupia.screens.shared.core.User
+import com.anenigmatic.secupia.screens.shared.data.retrofit.UserService
+import com.anenigmatic.secupia.screens.shared.util.toRequestBody
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
-class UserRepositoryImpl(private val prefs: SharedPreferences) : UserRepository {
+class UserRepositoryImpl(private val prefs: SharedPreferences, private val uService: UserService) : UserRepository {
 
     override fun getUser(forceUpdate: Boolean): Flowable<User> {
         val userFlowable = Flowable.create<User>({ emitter ->
@@ -33,21 +36,34 @@ class UserRepositoryImpl(private val prefs: SharedPreferences) : UserRepository 
     }
 
     override fun login(username: String, password: String): Completable {
-        return Completable.complete()
-            .delay(2, TimeUnit.SECONDS)
-            .doOnComplete {
+        val body = JSONObject().apply {
+            put("username", username)
+            put("password", password)
+        }
+        return uService.login(body.toRequestBody())
+            .doOnSuccess { loginResponse ->
                 prefs.edit(commit = true) {
-                    putString("JWT", "JWT ealkja;kj")
-                    putString("NAME", "Nishant Mahajan")
-                    putString("FLAT", "Block-A, RM2109")
-                    putStringSet("VEHICLE_NUMBERS", setOf("RJ14 9862", "RJ14 8915"))
+                    putString("JWT", "JWT ${loginResponse.jwt}")
                 }
+            }
+            .flatMapCompletable { loginResponse ->
+                uService.getProfile("JWT ${loginResponse.jwt}")
+                    .doOnSuccess { getProfileResponse ->
+                        prefs.edit(commit = true) {
+                            putString("NAME", getProfileResponse.profile.name)
+                            putString("FLAT", getProfileResponse.profile.flat)
+                            putStringSet("VEHICLE_NUMBERS", getProfileResponse.vehicles.map { it.registrationNo }.toSet())
+                        }
+                    }
+                    .ignoreElement()
             }
     }
 
     override fun resetPassword(username: String): Completable {
-        return Completable.complete()
-            .delay(2, TimeUnit.SECONDS)
+        val body = JSONObject().apply {
+            put("username", username)
+        }
+        return uService.resetPassword(body.toRequestBody())
     }
 
     override fun logout(): Completable {
@@ -61,6 +77,5 @@ class UserRepositoryImpl(private val prefs: SharedPreferences) : UserRepository 
 
             emitter.onComplete()
         }
-            .delay(1, TimeUnit.SECONDS)
     }
 }
