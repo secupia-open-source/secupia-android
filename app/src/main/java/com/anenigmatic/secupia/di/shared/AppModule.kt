@@ -10,6 +10,8 @@ import com.anenigmatic.secupia.screens.shared.data.room.AppDatabase
 import com.anenigmatic.secupia.screens.vehicle.data.VehicleRepository
 import com.anenigmatic.secupia.screens.vehicle.data.VehicleRepositoryImpl
 import com.anenigmatic.secupia.screens.vehicle.data.room.VehiclesDao
+import com.anenigmatic.secupia.screens.visitors.data.VisitorRepository
+import com.anenigmatic.secupia.screens.visitors.data.VisitorRepositoryImpl
 import com.anenigmatic.secupia.screens.visitors.data.room.VisitorsDao
 import dagger.Module
 import dagger.Provides
@@ -17,6 +19,12 @@ import javax.inject.Singleton
 
 @Module
 class AppModule(private val application: Application) {
+
+    @Singleton
+    @Provides
+    fun providesVisitorRepository(visitorsDao: VisitorsDao): VisitorRepository {
+        return VisitorRepositoryImpl(visitorsDao)
+    }
 
     @Singleton
     @Provides

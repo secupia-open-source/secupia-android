@@ -3,6 +3,7 @@ package com.anenigmatic.secupia.di.shared
 import com.anenigmatic.secupia.di.home.HomeComponent
 import com.anenigmatic.secupia.di.login.LoginComponent
 import com.anenigmatic.secupia.di.vehicle.VehicleComponent
+import com.anenigmatic.secupia.di.visitor.VisitorComponent
 import dagger.Component
 import javax.inject.Singleton
 
@@ -15,4 +16,6 @@ interface AppComponent {
     fun newHomeComponent(): HomeComponent
 
     fun newVehicleComponent(): VehicleComponent
+
+    fun newVisitorComponent(): VisitorComponent
 }
