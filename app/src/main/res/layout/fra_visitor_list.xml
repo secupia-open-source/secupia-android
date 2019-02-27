@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootPOV"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/appBarPOV"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="@color/blu02"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:tint="@color/wht01"
+        app:layout_constraintBottom_toBottomOf="@+id/appBarPOV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/appBarPOV"
+        app:srcCompat="@drawable/ic_back" />
+
+    <TextView
+        android:id="@+id/screenTitleLBL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Visitors"
+        android:textColor="@color/wht01"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/backBTN"
+        app:layout_constraintStart_toEndOf="@+id/backBTN"
+        app:layout_constraintTop_toTopOf="@+id/backBTN" />
+
+    <ImageView
+        android:id="@+id/refreshBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:tint="@color/wht01"
+        app:layout_constraintBottom_toBottomOf="@+id/backBTN"
+        app:layout_constraintEnd_toEndOf="@+id/appBarPOV"
+        app:layout_constraintTop_toTopOf="@+id/backBTN"
+        app:srcCompat="@drawable/ic_refresh" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/visitorsRCY"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarPOV"
+        tools:itemCount="3"
+        tools:listitem="@layout/row_visitor" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addVisitorBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:tint="@color/wht01"
+        app:backgroundTint="@color/blu01"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_add" />
+
+    <ProgressBar
+        android:id="@+id/loaderPBR"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/blu02"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
