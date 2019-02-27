@@ -14,6 +14,7 @@ import com.anenigmatic.secupia.screens.home.core.HomeViewModelFactory
 import com.anenigmatic.secupia.screens.home.core.HomeViewModel.UiOrder
 import com.anenigmatic.secupia.screens.login.view.LoginFragment
 import com.anenigmatic.secupia.screens.vehicle.view.VehicleInfoFragment
+import com.anenigmatic.secupia.screens.visitors.view.VisitorListFragment
 import kotlinx.android.synthetic.main.fra_home.view.*
 
 class HomeFragment : Fragment() {
@@ -31,6 +32,13 @@ class HomeFragment : Fragment() {
         rootPOV.showVehicleLogBTN.setOnClickListener {
             activity!!.supportFragmentManager.beginTransaction()
                 .replace(R.id.rootPOV, VehicleInfoFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        rootPOV.showVisitorLogBTN.setOnClickListener {
+            activity!!.supportFragmentManager.beginTransaction()
+                .replace(R.id.rootPOV, VisitorListFragment())
                 .addToBackStack(null)
                 .commit()
         }
