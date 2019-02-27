@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -36,7 +37,10 @@ class VisitorListFragment : Fragment(), VisitorsAdapter.ClickListener {
         }
 
         rootPOV.addVisitorBTN.setOnClickListener {
-
+            activity!!.supportFragmentManager.beginTransaction()
+                .replace(R.id.rootPOV, EditVisitorFragment().also { it.arguments = bundleOf("ID" to -1) })
+                .addToBackStack(null)
+                .commit()
         }
 
         viewModel.orderData.observe(viewLifecycleOwner, Observer { order ->
@@ -57,7 +61,10 @@ class VisitorListFragment : Fragment(), VisitorsAdapter.ClickListener {
 
 
     override fun onEditVisitorAction(id: Long) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        activity!!.supportFragmentManager.beginTransaction()
+            .replace(R.id.rootPOV, EditVisitorFragment().also { it.arguments = bundleOf("ID" to id) })
+            .addToBackStack(null)
+            .commit()
     }
 
 
