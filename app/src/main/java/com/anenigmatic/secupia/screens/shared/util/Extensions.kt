@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import okhttp3.MediaType
+import okhttp3.RequestBody
+import org.json.JSONObject
 
 /**
  * Reduces the code we need to type for casting LiveData to MutableLiveData.
@@ -20,4 +23,8 @@ fun <T> LiveData<T>.asMut(): MutableLiveData<T> {
 fun CompositeDisposable.set(disposable: Disposable) {
     clear()
     add(disposable)
+}
+
+fun JSONObject.toRequestBody(): RequestBody {
+    return RequestBody.create(MediaType.parse("application/json; charset=utf-8"), this.toString())
 }

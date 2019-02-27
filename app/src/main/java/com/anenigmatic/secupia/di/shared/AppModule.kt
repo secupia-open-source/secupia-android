@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import androidx.room.Room
 import com.anenigmatic.secupia.screens.shared.data.UserRepository
 import com.anenigmatic.secupia.screens.shared.data.UserRepositoryImpl
+import com.anenigmatic.secupia.screens.shared.data.retrofit.BaseInterceptor
 import com.anenigmatic.secupia.screens.shared.data.room.AppDatabase
 import com.anenigmatic.secupia.screens.vehicle.data.VehicleRepository
 import com.anenigmatic.secupia.screens.vehicle.data.VehicleRepositoryImpl
@@ -15,6 +16,10 @@ import com.anenigmatic.secupia.screens.visitors.data.VisitorRepositoryImpl
 import com.anenigmatic.secupia.screens.visitors.data.room.VisitorsDao
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -36,6 +41,17 @@ class AppModule(private val application: Application) {
     @Provides
     fun providesUserRepository(sharedPreferences: SharedPreferences): UserRepository {
         return UserRepositoryImpl(sharedPreferences)
+    }
+
+    @Singleton
+    @Provides
+    fun providesRetrofit(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("http://192.168.43.47:8000/api/")
+            .client(OkHttpClient().newBuilder().addInterceptor(BaseInterceptor()).build())
+            .addConverterFactory(MoshiConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
     }
 
     @Singleton
