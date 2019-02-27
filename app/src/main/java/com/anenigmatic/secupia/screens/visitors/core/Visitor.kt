@@ -1,5 +1,7 @@
 package com.anenigmatic.secupia.screens.visitors.core
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import org.threeten.bp.LocalDateTime
 
 /**
@@ -9,8 +11,9 @@ import org.threeten.bp.LocalDateTime
  *      it is null, it means either that the user didn't come via a vehicle or there is
  *      no information about it's registration number.
  * */
+@Entity(tableName = "Visitors")
 data class Visitor(
-    val id: Long,
+    @PrimaryKey val id: Long,
     val name: String,
     val datetime: LocalDateTime,
     val vehicleRegistrationNo: String?,
