@@ -11,6 +11,7 @@ import com.anenigmatic.secupia.screens.shared.data.retrofit.UserService
 import com.anenigmatic.secupia.screens.shared.data.room.AppDatabase
 import com.anenigmatic.secupia.screens.vehicle.data.VehicleRepository
 import com.anenigmatic.secupia.screens.vehicle.data.VehicleRepositoryImpl
+import com.anenigmatic.secupia.screens.vehicle.data.retrofit.VehicleService
 import com.anenigmatic.secupia.screens.vehicle.data.room.VehiclesDao
 import com.anenigmatic.secupia.screens.visitors.data.VisitorRepository
 import com.anenigmatic.secupia.screens.visitors.data.VisitorRepositoryImpl
@@ -34,14 +35,20 @@ class AppModule(private val application: Application) {
 
     @Singleton
     @Provides
-    fun providesVehicleRepository(vehiclesDao: VehiclesDao): VehicleRepository {
-        return VehicleRepositoryImpl(vehiclesDao)
+    fun providesVehicleRepository(userRepository: UserRepository, vehiclesDao: VehiclesDao, vehicleService: VehicleService): VehicleRepository {
+        return VehicleRepositoryImpl(userRepository, vehiclesDao, vehicleService)
     }
 
     @Singleton
     @Provides
     fun providesUserRepository(sharedPreferences: SharedPreferences, userService: UserService): UserRepository {
         return UserRepositoryImpl(sharedPreferences, userService)
+    }
+
+    @Singleton
+    @Provides
+    fun providesVehicleService(retrofit: Retrofit): VehicleService {
+        return retrofit.create(VehicleService::class.java)
     }
 
     @Singleton
@@ -54,7 +61,7 @@ class AppModule(private val application: Application) {
     @Provides
     fun providesRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://192.168.43.47:8000/api/")
+            .baseUrl("http://192.168.43.47:8080/api/")
             .client(OkHttpClient().newBuilder().addInterceptor(BaseInterceptor()).build())
             .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
