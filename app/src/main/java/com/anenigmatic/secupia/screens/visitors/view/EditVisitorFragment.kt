@@ -14,9 +14,6 @@ import com.anenigmatic.secupia.screens.visitors.core.EditVisitorViewModel.UiOrde
 import com.anenigmatic.secupia.screens.visitors.core.EditVisitorViewModelFactory
 import com.anenigmatic.secupia.screens.visitors.core.Visitor
 import kotlinx.android.synthetic.main.fra_edit_visitor.view.*
-import org.threeten.bp.LocalDate
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.LocalTime
 
 class EditVisitorFragment : Fragment() {
 
@@ -53,9 +50,9 @@ class EditVisitorFragment : Fragment() {
             val name = rootPOV.nameTXT.text.toString()
             val dateString = rootPOV.dateTXT.text.toString()
             val timeString = rootPOV.timeTXT.text.toString()
-            val registrationNo = rootPOV.vehicleRegistrationNoTXT.text.toString()
+            val phoneNo = rootPOV.phoneNoTXT.text.toString()
             val purpose = rootPOV.purposeTXT.text.toString()
-            viewModel.onPositiveAction(name, dateString, timeString, registrationNo, purpose)
+            viewModel.onPositiveAction(name, dateString, timeString, phoneNo, purpose)
         }
 
         rootPOV.negativeBTN.setOnClickListener {
@@ -93,7 +90,7 @@ class EditVisitorFragment : Fragment() {
             view.textView10.visibility = View.GONE
             view.timeTXT.visibility = View.GONE
             view.textView11.visibility = View.GONE
-            view.vehicleRegistrationNoTXT.visibility = View.GONE
+            view.phoneNoTXT.visibility = View.GONE
             view.textView14.visibility = View.GONE
             view.purposeTXT.visibility = View.GONE
             view.positiveBTN.visibility = View.GONE
@@ -112,7 +109,7 @@ class EditVisitorFragment : Fragment() {
             view.textView10.visibility = View.VISIBLE
             view.timeTXT.visibility = View.VISIBLE
             view.textView11.visibility = View.VISIBLE
-            view.vehicleRegistrationNoTXT.visibility = View.VISIBLE
+            view.phoneNoTXT.visibility = View.VISIBLE
             view.textView14.visibility = View.VISIBLE
             view.purposeTXT.visibility = View.VISIBLE
             view.positiveBTN.visibility = View.VISIBLE
@@ -122,7 +119,7 @@ class EditVisitorFragment : Fragment() {
             val date = "${visitor.datetime.dayOfMonth}/${visitor.datetime.monthValue}/${visitor.datetime.year}"
             view.dateTXT.setText(date)
             view.timeTXT.setText(visitor.datetime.toLocalTime().toString().take(5))
-            view.vehicleRegistrationNoTXT.setText(visitor.vehicleRegistrationNo)
+            view.phoneNoTXT.setText(visitor.phoneNo)
             view.purposeTXT.setText(visitor.purposeOfVisit)
         }
     }

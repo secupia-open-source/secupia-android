@@ -47,8 +47,8 @@ class EditVisitorViewModel(private val vRepo: VisitorRepository, private val id:
 
 
     @SuppressLint("CheckResult")
-    fun onPositiveAction(name: String, dateString: String, timeString: String, regNo: String, purpose: String) {
-        if(!isInputValid(name, dateString, timeString, regNo, purpose)) {
+    fun onPositiveAction(name: String, dateString: String, timeString: String, phoneNo: String, purpose: String) {
+        if(!isInputValid(name, dateString, timeString, phoneNo, purpose)) {
             return
         }
 
@@ -64,7 +64,7 @@ class EditVisitorViewModel(private val vRepo: VisitorRepository, private val id:
         orderData.asMut().value = UiOrder.ShowLoadingState
 
         if(id == null) {
-            vRepo.insertVisitor(Visitor(0L, name, LocalDateTime.of(date, time), regNo, purpose))
+            vRepo.insertVisitor(Visitor(0L, name, LocalDateTime.of(date, time), phoneNo, purpose))
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     {
@@ -77,7 +77,7 @@ class EditVisitorViewModel(private val vRepo: VisitorRepository, private val id:
                     }
                 )
         } else {
-            vRepo.updateVisitor(Visitor(id, name, LocalDateTime.of(date, time), regNo, purpose))
+            vRepo.updateVisitor(Visitor(id, name, LocalDateTime.of(date, time), phoneNo, purpose))
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     {
@@ -92,6 +92,7 @@ class EditVisitorViewModel(private val vRepo: VisitorRepository, private val id:
         }
     }
 
+    @SuppressLint("CheckResult")
     fun onNegativeAction() {
         if(id == null) {
             orderData.asMut().value = UiOrder.MoveToVisitorList
@@ -121,7 +122,7 @@ class EditVisitorViewModel(private val vRepo: VisitorRepository, private val id:
     }
 
 
-    private fun isInputValid(name: String, dateString: String, timeString: String, regNo: String, purpose: String): Boolean {
+    private fun isInputValid(name: String, dateString: String, timeString: String, phoneNo: String, purpose: String): Boolean {
         if(name.isBlank()) {
             toastData.asMut().value = "You can't leave the name field empty"
             return false
@@ -134,8 +135,8 @@ class EditVisitorViewModel(private val vRepo: VisitorRepository, private val id:
             toastData.asMut().value = "Please enter time in given format"
             return false
         }
-        if(!Regex("""\D{2} \d{2} \D{2} \d{4}""").matches(regNo)) {
-            toastData.asMut().value = "Please enter registration number in correct format"
+        if(!Regex("""\d{10}""").matches(phoneNo)) {
+            toastData.asMut().value = "Please enter contact number in correct format"
             return false
         }
         return true
