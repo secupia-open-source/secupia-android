@@ -28,3 +28,12 @@ fun CompositeDisposable.set(disposable: Disposable) {
 fun JSONObject.toRequestBody(): RequestBody {
     return RequestBody.create(MediaType.parse("application/json; charset=utf-8"), this.toString())
 }
+
+fun Int.prepadWithZero(): String {
+    return when(this) {
+        in -9..-1 -> this.toString()
+        in 0..9   -> "0$this"
+        in 10..99 -> this.toString()
+        else      -> throw IllegalArgumentException("Can't prepad $this")
+    }
+}

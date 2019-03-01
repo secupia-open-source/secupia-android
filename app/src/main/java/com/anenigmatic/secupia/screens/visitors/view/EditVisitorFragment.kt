@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.anenigmatic.secupia.R
+import com.anenigmatic.secupia.screens.shared.util.prepadWithZero
 import com.anenigmatic.secupia.screens.visitors.core.EditVisitorViewModel
 import com.anenigmatic.secupia.screens.visitors.core.EditVisitorViewModel.UiOrder
 import com.anenigmatic.secupia.screens.visitors.core.EditVisitorViewModelFactory
@@ -116,7 +117,7 @@ class EditVisitorFragment : Fragment() {
             view.negativeBTN.visibility = View.VISIBLE
 
             view.nameTXT.setText(visitor.name)
-            val date = "${visitor.datetime.dayOfMonth}/${visitor.datetime.monthValue}/${visitor.datetime.year}"
+            val date = "${visitor.datetime.dayOfMonth.prepadWithZero()}/${visitor.datetime.monthValue.prepadWithZero()}/${visitor.datetime.year}"
             view.dateTXT.setText(date)
             view.timeTXT.setText(visitor.datetime.toLocalTime().toString().take(5))
             view.phoneNoTXT.setText(visitor.phoneNo)
