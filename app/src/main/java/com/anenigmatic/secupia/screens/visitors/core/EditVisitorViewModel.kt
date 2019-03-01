@@ -139,6 +139,18 @@ class EditVisitorViewModel(private val vRepo: VisitorRepository, private val id:
             toastData.asMut().value = "Please enter contact number in correct format"
             return false
         }
+        try {
+            val date = LocalDate.of(dateString.takeLast(4).toInt(), dateString.substring(3..4).toInt(), dateString.take(2).toInt())
+        } catch(e: Exception) {
+            toastData.asMut().value = "Please enter a valid date"
+            return false
+        }
+        try {
+            val time = LocalTime.of(timeString.take(2).toInt(), timeString.takeLast(2).toInt())
+        } catch(e: Exception) {
+            toastData.asMut().value = "Please enter a valid time"
+            return false
+        }
         return true
     }
 }
