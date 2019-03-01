@@ -15,6 +15,7 @@ import com.anenigmatic.secupia.screens.vehicle.data.retrofit.VehicleService
 import com.anenigmatic.secupia.screens.vehicle.data.room.VehiclesDao
 import com.anenigmatic.secupia.screens.visitors.data.VisitorRepository
 import com.anenigmatic.secupia.screens.visitors.data.VisitorRepositoryImpl
+import com.anenigmatic.secupia.screens.visitors.data.retrofit.VisitorService
 import com.anenigmatic.secupia.screens.visitors.data.room.VisitorsDao
 import dagger.Module
 import dagger.Provides
@@ -29,8 +30,8 @@ class AppModule(private val application: Application) {
 
     @Singleton
     @Provides
-    fun providesVisitorRepository(visitorsDao: VisitorsDao): VisitorRepository {
-        return VisitorRepositoryImpl(visitorsDao)
+    fun providesVisitorRepository(userRepository: UserRepository, visitorsDao: VisitorsDao, visitorService: VisitorService): VisitorRepository {
+        return VisitorRepositoryImpl(userRepository, visitorsDao, visitorService)
     }
 
     @Singleton
@@ -43,6 +44,12 @@ class AppModule(private val application: Application) {
     @Provides
     fun providesUserRepository(sharedPreferences: SharedPreferences, userService: UserService): UserRepository {
         return UserRepositoryImpl(sharedPreferences, userService)
+    }
+
+    @Singleton
+    @Provides
+    fun providesVisitorSerivce(retrofit: Retrofit): VisitorService {
+        return retrofit.create(VisitorService::class.java)
     }
 
     @Singleton
