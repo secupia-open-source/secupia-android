@@ -75,7 +75,7 @@ class AppModule(private val application: Application) {
     @Provides
     fun providesRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://192.168.43.47:8080/api/")
+            .baseUrl("http://10.32.8.101:8080/api/")
             .client(OkHttpClient().newBuilder().addInterceptor(BaseInterceptor()).build())
             .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

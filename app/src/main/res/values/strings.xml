@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Secupia</string>
+
+    <string name="default_notification_channel">Secupia</string>
 </resources>
