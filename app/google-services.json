@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "30465922411",
+    "firebase_url": "https://secupia2019.firebaseio.com",
+    "project_id": "secupia2019",
+    "storage_bucket": "secupia2019.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30465922411:android:598a2e79a2761236",
+        "android_client_info": {
+          "package_name": "com.anenigmatic.secupia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "30465922411-9vcecladtp0n5fnidhbmdbiec0ctl11h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anenigmatic.secupia",
+            "certificate_hash": "a41f89a0e1f29bac6b0a870f08228402c9f3de39"
+          }
+        },
+        {
+          "client_id": "30465922411-1mcs1054pi347909l0epns2oakuuf3fp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfRRhY3CzUy46OXAsgdhf9OLVq98W1GCQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "30465922411-1mcs1054pi347909l0epns2oakuuf3fp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

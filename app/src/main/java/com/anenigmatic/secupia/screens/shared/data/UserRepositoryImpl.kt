@@ -3,6 +3,7 @@ package com.anenigmatic.secupia.screens.shared.data
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.anenigmatic.secupia.screens.shared.core.User
+import com.anenigmatic.secupia.screens.shared.data.retrofit.FcmService
 import com.anenigmatic.secupia.screens.shared.data.retrofit.UserService
 import com.anenigmatic.secupia.screens.shared.util.toRequestBody
 import io.reactivex.BackpressureStrategy
@@ -11,7 +12,11 @@ import io.reactivex.Flowable
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
-class UserRepositoryImpl(private val prefs: SharedPreferences, private val uService: UserService) : UserRepository {
+class UserRepositoryImpl(
+    private val prefs: SharedPreferences,
+    private val uService: UserService,
+    private val fService: FcmService
+) : UserRepository {
 
     override fun getUser(forceUpdate: Boolean): Flowable<User> {
         val userFlowable = Flowable.create<User>({ emitter ->
@@ -54,6 +59,15 @@ class UserRepositoryImpl(private val prefs: SharedPreferences, private val uServ
                             putString("FLAT", getProfileResponse.profile.flat)
                             putStringSet("VEHICLE_NUMBERS", getProfileResponse.vehicles.map { it.registrationNo }.toSet())
                         }
+                    }
+                    .doOnSuccess { getProfileResponse ->
+                        val body = JSONObject().apply {
+                            put("registration_token", prefs.getString("REGISTRATION_TOKEN", null))
+                        }
+                        fService.updateRegistrationToken("JWT ${loginResponse.jwt}", body.toRequestBody())
+                            .subscribe(
+                                {},{}
+                            )
                     }
                     .ignoreElement()
             }

@@ -7,6 +7,7 @@ import androidx.room.Room
 import com.anenigmatic.secupia.screens.shared.data.UserRepository
 import com.anenigmatic.secupia.screens.shared.data.UserRepositoryImpl
 import com.anenigmatic.secupia.screens.shared.data.retrofit.BaseInterceptor
+import com.anenigmatic.secupia.screens.shared.data.retrofit.FcmService
 import com.anenigmatic.secupia.screens.shared.data.retrofit.UserService
 import com.anenigmatic.secupia.screens.shared.data.room.AppDatabase
 import com.anenigmatic.secupia.screens.vehicle.data.VehicleRepository
@@ -42,8 +43,14 @@ class AppModule(private val application: Application) {
 
     @Singleton
     @Provides
-    fun providesUserRepository(sharedPreferences: SharedPreferences, userService: UserService): UserRepository {
-        return UserRepositoryImpl(sharedPreferences, userService)
+    fun providesUserRepository(sharedPreferences: SharedPreferences, userService: UserService, fcmService: FcmService): UserRepository {
+        return UserRepositoryImpl(sharedPreferences, userService, fcmService)
+    }
+
+    @Singleton
+    @Provides
+    fun providesFcmService(retrofit: Retrofit): FcmService {
+        return retrofit.create(FcmService::class.java)
     }
 
     @Singleton

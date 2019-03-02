@@ -4,6 +4,7 @@ import com.anenigmatic.secupia.di.home.HomeComponent
 import com.anenigmatic.secupia.di.login.LoginComponent
 import com.anenigmatic.secupia.di.vehicle.VehicleComponent
 import com.anenigmatic.secupia.di.visitor.VisitorComponent
+import com.anenigmatic.secupia.screens.shared.data.fcm.SecupiaMessagingService
 import dagger.Component
 import javax.inject.Singleton
 
@@ -18,4 +19,6 @@ interface AppComponent {
     fun newVehicleComponent(): VehicleComponent
 
     fun newVisitorComponent(): VisitorComponent
+
+    fun inject(service: SecupiaMessagingService)
 }
