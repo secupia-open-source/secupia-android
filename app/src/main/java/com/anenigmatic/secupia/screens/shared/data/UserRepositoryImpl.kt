@@ -21,16 +21,13 @@ class UserRepositoryImpl(
     override fun getUser(forceUpdate: Boolean): Flowable<User> {
         val userFlowable = Flowable.create<User>({ emitter ->
             val jwt = prefs.getString("JWT", null)
-            val name = prefs.getString("NAME", null)
-            val flat = prefs.getString("FLAT", null)
-            val vehicleNumbers = prefs.getStringSet("VEHICLE_NUMBERS", null)
 
-            if(jwt == null || name == null || flat == null || vehicleNumbers == null) {
+            if(jwt == null) {
                 emitter.onError(IllegalStateException("User isn't logged in"))
                 return@create
             }
 
-            emitter.onNext(User(jwt, name, flat, vehicleNumbers.toList()))
+            emitter.onNext(User(jwt))
         }, BackpressureStrategy.LATEST)
 
         return if(forceUpdate) {
@@ -52,24 +49,10 @@ class UserRepositoryImpl(
                 }
             }
             .flatMapCompletable { loginResponse ->
-                uService.getProfile("JWT ${loginResponse.jwt}")
-                    .doOnSuccess { getProfileResponse ->
-                        prefs.edit(commit = true) {
-                            putString("NAME", getProfileResponse.profile.name)
-                            putString("FLAT", getProfileResponse.profile.flat)
-                            putStringSet("VEHICLE_NUMBERS", getProfileResponse.vehicles.map { it.registrationNo }.toSet())
-                        }
-                    }
-                    .doOnSuccess { getProfileResponse ->
-                        val body = JSONObject().apply {
-                            put("registration_token", prefs.getString("REGISTRATION_TOKEN", null))
-                        }
-                        fService.updateRegistrationToken("JWT ${loginResponse.jwt}", body.toRequestBody())
-                            .subscribe(
-                                {},{}
-                            )
-                    }
-                    .ignoreElement()
+                val body = JSONObject().apply {
+                    put("registration_token", prefs.getString("REGISTRATION_TOKEN", null))
+                }
+                fService.updateRegistrationToken("JWT ${loginResponse.jwt}", body.toRequestBody())
             }
     }
 
@@ -84,9 +67,6 @@ class UserRepositoryImpl(
         return Completable.create { emitter ->
             prefs.edit(commit = true) {
                 putString("JWT", null)
-                putString("NAME", null)
-                putString("FLAT", null)
-                putStringSet("VEHICLE_NUMBERS", null)
             }
 
             emitter.onComplete()

@@ -7,15 +7,15 @@ import retrofit2.http.*
 
 interface VisitorService {
 
-    @GET("resident/guest")
+    @GET("flat/guests")
     fun getExpectedVisitors(@Header("Authorization") jwt: String): Single<List<ExpectedVisitorFragment>>
 
-    @POST("resident/guest")
+    @POST("flat/guests")
     fun insertVisitor(@Header("Authorization") jwt: String, @Body body: RequestBody): Single<InsertVisitorResponse>
 
-    @PATCH("resident/guest")
+    @PATCH("flat/guests")
     fun updateVisitor(@Header("Authorization") jwt: String, @Body body: RequestBody): Completable
 
-    @HTTP(method = "DELETE", path = "resident/guest", hasBody = true)
+    @HTTP(method = "DELETE", path = "flat/guests", hasBody = true)
     fun deleteVisitor(@Header("Authorization") jwt: String, @Body body: RequestBody): Completable
 }

@@ -15,7 +15,4 @@ interface UserService {
 
     @POST("reset-password")
     fun resetPassword(@Body body: RequestBody): Completable
-
-    @GET("resident/profile")
-    fun getProfile(@Header("Authorization") jwt: String): Single<GetProfileResponse>
 }

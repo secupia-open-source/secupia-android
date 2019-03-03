@@ -8,6 +8,6 @@ import retrofit2.http.POST
 
 interface FcmService {
 
-    @POST("registration-token")
+    @POST("flat/registration-token")
     fun updateRegistrationToken(@Header("Authorization") jwt: String, @Body body: RequestBody): Completable
 }

@@ -32,7 +32,7 @@ class VisitorRepositoryImpl(
                     put("name", visitor.name)
                     put("purpose", visitor.purposeOfVisit)
                     put("contact", visitor.phoneNo)
-                    put("date_time", visitor.datetime.toString())
+                    put("timestamp", visitor.datetime.toString())
                 }
                 vService.insertVisitor(user.jwt, body.toRequestBody())
             }
@@ -51,7 +51,7 @@ class VisitorRepositoryImpl(
                     put("name", visitor.name)
                     put("purpose", visitor.purposeOfVisit)
                     put("contact", visitor.phoneNo)
-                    put("date_time", visitor.datetime.toString())
+                    put("timestamp", visitor.datetime.toString())
                 }
                 vService.updateVisitor(user.jwt, body.toRequestBody())
             }

@@ -7,9 +7,9 @@ import retrofit2.http.Path
 
 interface VehicleService {
 
-    @GET("resident/vehicle")
+    @GET("flat/vehicles")
     fun getAllVehicles(@Header("Authorization") jwt: String): Single<List<VehicleFragment>>
 
-    @GET("resident/vehicle/{id}/logs")
+    @GET("flat/vehicles/{id}")
     fun getAllVehicleLogs(@Header("Authorization") jwt: String, @Path("id") id: String): Single<List<VehicleLogFragment>>
 }
